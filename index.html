@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#20b5be">
+<title>وزير الحلو | حضّر منتجك بمزاجك</title>
+<style>
+/* ===== BRAND THEME: change these to match the brand identity ===== */
+:root{--teal:#20b5be;--teal-d:#0b6f77;--ink:#12353a;--bg:#eefafa;--warm:#ff9f43;--card:#fff;--ok:#2fb36d;--bad:#e5484d;--r:26px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--ink);user-select:none;-webkit-user-select:none;touch-action:manipulation}
+button{font:inherit;cursor:pointer;border:0;color:inherit;transition:transform .12s,box-shadow .2s,opacity .2s}button:active:not(:disabled){transform:scale(.96)}
+#app{display:grid;grid-template-rows:84px 1fr;height:100%}
+header{display:flex;align-items:center;gap:18px;padding:0 26px;background:linear-gradient(120deg,var(--teal-d),var(--teal));color:#fff;box-shadow:0 4px 18px #0b6f7766;z-index:2}
+.logo{height:56px;border-radius:12px}.bn{line-height:1.1}.bn b{font-size:28px;display:block}.bn small{opacity:.85;font-size:14px}
+.steps{display:flex;gap:10px;margin:0 auto}.st{display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:40px;background:#ffffff26;font-weight:700;font-size:16px;opacity:.65;transition:.3s}
+.st i{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--teal-d);display:grid;place-items:center;font-style:normal;font-size:14px}
+.st.on{opacity:1;background:#fff;color:var(--teal-d)}.st.on i{background:var(--teal);color:#fff}.st.done{opacity:1}
+.lang{background:var(--warm);color:#3b2200;padding:12px 24px;border-radius:40px;font-weight:800;font-size:17px}
+main{display:grid;grid-template-columns:1fr 390px;gap:18px;padding:18px;min-height:0}
+#stage{min-height:0;display:flex;flex-direction:column}
+.mhead,.bhead{display:flex;align-items:center;gap:14px;margin-bottom:14px}.mhead h2,.bhead h2{margin:0;font-size:30px;flex:1}
+.pill{background:var(--teal);color:#fff;padding:6px 16px;border-radius:30px;font-weight:700}
+.ghost{background:#fff;color:var(--teal-d);padding:12px 22px;border-radius:40px;font-weight:800;font-size:16px;box-shadow:0 2px 8px #0002}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;overflow-y:auto;padding:4px 4px 16px}
+.card{background:var(--card);border-radius:var(--r);padding:12px;text-align:center;box-shadow:0 6px 18px #0b6f7722;display:flex;flex-direction:column;gap:6px;animation:rise .5s both}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 26px #0b6f7744}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.ph{height:130px;border-radius:20px;background:linear-gradient(135deg,var(--teal),var(--warm));display:grid;place-items:center;font-size:54px;overflow:hidden;position:relative}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card b{font-size:19px}.card small{color:#6a8a8e;min-height:34px;font-size:13.5px}
+.price{background:var(--bg);color:var(--teal-d);font-weight:900;font-size:20px;border-radius:14px;padding:6px}
+.build{flex:1;display:grid;grid-template-columns:270px 1fr;gap:18px;min-height:0}
+.cupwrap{background:var(--card);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 6px 18px #0b6f7722}
+.jar{flex:1;width:190px;padding:10px 8px 8px;border-radius:18px 18px 60px 60px;background:linear-gradient(90deg,#d9f3f4,#fff 40%,#d9f3f4);display:flex;box-shadow:inset 0 0 0 4px var(--teal)}
+.cup{flex:1;display:flex;flex-direction:column-reverse;border-radius:8px 8px 52px 52px;overflow:hidden;background:#fff}
+.band{background:var(--c);flex-grow:1;min-height:7px;border-top:1px solid #0001}
+.band.new{animation:pop .5s cubic-bezier(.2,1.7,.4,1)}@keyframes pop{from{transform:translateY(-80px) scaleY(.2);opacity:0}}
+.cuptotal{font-size:34px;font-weight:900;color:var(--teal-d)}
+.btn{width:100%;padding:18px;border-radius:20px;font-size:21px;font-weight:900}
+.add{background:var(--ok);color:#fff;box-shadow:0 6px 16px #2fb36d66}.print{background:var(--teal-d);color:#fff;box-shadow:0 6px 16px #0b6f7766}
+.btn:disabled{opacity:.35;box-shadow:none}.link{background:none;color:var(--teal-d);font-weight:700;padding:10px;width:100%;font-size:15px;text-decoration:underline}.link:disabled{opacity:.3}
+.opts{overflow-y:auto;padding:2px 6px 14px}.opts h3{margin:6px 0 2px;font-size:22px}.opts p{margin:0 0 12px;color:#6a8a8e;font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.chip{background:var(--card);border-radius:40px;padding:14px 20px;font-size:17px;font-weight:700;box-shadow:0 2px 8px #0002;border:3px solid var(--ok)}
+.chip small{opacity:.6;font-weight:400}.chip.off{opacity:.45;text-decoration:line-through;border-color:#c5d3d4;background:#f1f6f6}.chip.lock{border-style:dashed;border-color:var(--teal)}
+.exg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.ex{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:20px;padding:10px 12px;box-shadow:0 2px 8px #0002;border:3px solid transparent}.ex.has{border-color:var(--teal);background:#f2fdfd}
+.dot{width:16px;height:46px;border-radius:8px;background:var(--c);flex:none}
+.ex .n{flex:1;font-weight:700;font-size:16px;line-height:1.25}.ex .n small{display:block;color:#7a9a9e;font-weight:400;font-size:12.5px}
+.ex .p{font-weight:900;color:var(--teal-d);font-size:15px}
+.step{width:46px;height:46px;border-radius:50%;background:var(--teal);color:#fff;font-size:28px;font-weight:900;line-height:1}.step:disabled{opacity:.22}
+.q{min-width:24px;text-align:center;font-size:20px;font-weight:900}
+.side{background:var(--card);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;box-shadow:0 6px 18px #0b6f7722;min-height:0}
+.side h2{margin:0;font-size:24px}.live{display:flex;align-items:center;gap:8px;color:#6a8a8e;font-size:14px;margin:2px 0 8px}
+.live:before{content:'';width:10px;height:10px;border-radius:50%;background:var(--ok);animation:blink 1.4s infinite}@keyframes blink{50%{opacity:.25}}
+.lines{flex:1;overflow-y:auto;border-top:2px dashed #cfe3e4;padding-top:6px}
+.ln{padding:10px 0;border-bottom:1px dashed #d8e8e9;animation:rise .3s both}.ln .t{display:flex;justify-content:space-between;font-weight:800;font-size:16px}
+.ln small{display:block;color:#5d7f83;font-size:13.5px}.ln button{background:#ffe6e6;color:var(--bad);border-radius:10px;padding:5px 14px;margin-top:6px;font-size:13px;font-weight:700}
+.empty{color:#9bb;text-align:center;margin-top:40px;font-size:16px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;font-size:20px;font-weight:700;padding:12px 0 6px}.tot b{font-size:34px;color:var(--teal-d)}
+.hint{font-size:13px;color:#6a8a8e;text-align:center;margin:8px 0 0}.off{font-size:12px;color:#8aa;text-align:center;margin-top:6px}
+.ov{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:30px;color:#fff;z-index:9;background:radial-gradient(circle at 30% 20%,var(--teal),var(--teal-d))}.ov.show{display:flex}
+.ov h1{font-size:68px;margin:0;line-height:1.15}.ov h1 em{color:var(--warm);font-style:normal}.ov h2{font-size:48px;margin:0}.ov p{font-size:23px;margin:0;max-width:760px;opacity:.95}
+.big{font-size:150px;font-weight:900;color:var(--warm);line-height:1}
+.ov .btn{width:340px;background:var(--warm);color:#3b2200}.ov .btn.alt{background:#ffffff30;color:#fff}
+.tag{font-size:30px;font-weight:800;color:var(--warm)}.how{display:flex;gap:16px;margin:8px 0}.how div{background:#ffffff26;border-radius:22px;padding:14px 24px;font-size:20px;font-weight:800}.how b{color:var(--warm);margin-inline-end:8px}
+.wlogo{height:120px;border-radius:24px}.pulse{animation:beat 1.5s infinite}@keyframes beat{50%{transform:scale(1.06)}}
+#idle{background:#0b3a3fee}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:14px 30px;border-radius:40px;font-weight:800;font-size:19px;z-index:8;opacity:0;pointer-events:none;transition:.3s}.toast.show{opacity:1}
+#ticket{display:none}
+@media (max-width:1100px){main{grid-template-columns:1fr 330px}.build{grid-template-columns:220px 1fr}.steps{display:none}}
+@media print{
+ @page{size:80mm auto;margin:0}html,body{height:auto;overflow:visible;background:#fff}body>*:not(#ticket){display:none!important}
+ #ticket{display:block;width:72mm;margin:0 auto;padding:3mm;direction:rtl;font:13px/1.45 'Segoe UI',Tahoma,sans-serif;color:#000}
+ #ticket .c{text-align:center}#ticket .no{font-size:44px;font-weight:900;text-align:center;border:2px solid #000;margin:6px 0}
+ #ticket .r{display:flex;justify-content:space-between;gap:6px}#ticket hr{border:0;border-top:1px dashed #000}#ticket .sub{padding-inline-start:10px;font-size:12px}
+}
+
+/* ===== First-design structure + Wazir Al Helw identity ===== */
+:root{--teal:#20b5be;--teal-d:#3d2b63;--ink:#28203f;--bg:#f4fbfb;--warm:#f6c928;--pink:#ed2760;--card:#fff;--ok:#2fb36d;--bad:#df4051;--r:24px}
+body{background:radial-gradient(circle at 10% 5%,#fff 0,#f4fbfb 42%,#e8f7f7 100%);font-family:'Cairo','Segoe UI',Tahoma,sans-serif}
+header{background:linear-gradient(110deg,#3d2b63 0%,#493074 42%,#20b5be 100%);padding-inline:22px;box-shadow:0 8px 26px #3d2b6333}.logo{width:58px;height:58px;object-fit:cover;background:#fff;padding:3px;border-radius:16px;box-shadow:0 4px 12px #1b102d44}.bn b{letter-spacing:-.04em}.bn small{color:#dffcff}.lang{background:var(--warm);box-shadow:0 4px 0 #c29408;color:#33220c}.st{background:#ffffff1c}.st.on{box-shadow:0 4px 12px #1e133b2e}.st.on i{background:var(--pink)}
+main{gap:20px;padding:20px}.side,.card,.cupwrap{box-shadow:0 10px 30px #3d2b6314;border:1px solid #ffffffaa}.side{border-top:5px solid var(--pink)}.pill{background:var(--pink);box-shadow:0 4px 10px #ed276033}.ghost{border:1px solid #d6e8e8}.grid{gap:18px}.card{position:relative;overflow:hidden;border-top:4px solid transparent}.card:hover{border-top-color:var(--pink)}.ph{height:162px;background:linear-gradient(145deg,#edfafa,#fff5dc);border:1px solid #e5f0f0}.ph img{object-fit:cover;transition:transform .35s}.card:hover .ph img{transform:scale(1.06)}.price{background:#fff5c8;color:#654d00}
+.selected-product{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;background:#f7fbfb;border:1px solid #e0eeee;border-radius:18px;text-align:start}.selected-product img{width:52px;height:52px;border-radius:13px;object-fit:cover}.selected-product small{display:block;color:#7b9699;font-size:11px}.selected-product strong{display:block;color:var(--teal-d);font-size:16px}.cupwrap{padding:16px;background:linear-gradient(180deg,#fff,#f7ffff)}.jar{position:relative;width:198px;background:linear-gradient(90deg,#d0f0f1,#fff 38%,#d0f0f1);box-shadow:inset 0 0 0 4px var(--teal),0 12px 24px #3d2b6320}.jar:before{content:'WAZIR';position:absolute;top:48%;inset-inline-start:50%;transform:translate(-50%,-50%) rotate(-90deg);color:#3d2b6320;font-size:18px;font-weight:900;letter-spacing:.1em;z-index:3;pointer-events:none}.cup{position:relative}.band{position:relative;background:linear-gradient(180deg,#ffffff88,var(--c));box-shadow:inset 0 1px #ffffff80}.band span{position:absolute;inset:0;display:grid;place-items:center;color:#342640aa;font-size:clamp(9px,1.1vw,13px);font-weight:900;text-shadow:0 1px #fff8;white-space:nowrap;overflow:hidden}.cuptotal{color:var(--teal-d);letter-spacing:-.04em}.add{background:linear-gradient(135deg,#2fb878,#16895b)}.print{background:linear-gradient(135deg,#4a3374,#3d2b63)}.opts h3{color:var(--teal-d)}.chip{border-color:#9bdfe0}.chip:not(.off):hover{border-color:var(--pink);transform:translateY(-2px)}.ex{border-color:#edf2f2}.ex.has{border-color:var(--pink);box-shadow:0 5px 15px #ed276015}.step{background:var(--teal-d)}.lines{border-top-color:#edc6d1}.tot b{color:var(--pink)}.toast{background:var(--pink)}
+@media (max-width:820px){html,body{overflow:auto}#app{height:auto;min-height:100%}header{min-height:76px;padding:10px 14px}.bn b{font-size:22px}.bn small{font-size:11px}.lang{padding:9px 13px;font-size:13px}main{display:flex;flex-direction:column;padding:12px}.side{order:-1}.side .lines{max-height:180px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:8px}.ph{height:130px}.card b{font-size:16px}.card small{font-size:12px}.build{display:flex;flex-direction:column}.cupwrap{order:-1}.jar{height:260px;flex:none;width:180px}.opts{overflow:visible}.exg{grid-template-columns:1fr}.mhead h2,.bhead h2{font-size:22px}.bhead{flex-wrap:wrap}.bhead h2{order:-1;width:100%}.steps{display:none}}
+
+</style>
+</head>
+<body>
+<div id="app">
+ <header><img class="logo" src="assets/logo.jpg" alt="" onerror="this.remove()"><div class="bn"><b id="brand"></b><small id="branch"></small></div>
+  <div class="steps" id="steps"></div><button class="lang" id="langBtn"></button></header>
+ <main>
+  <section id="stage"></section>
+  <aside class="side"><h2 id="sumH"></h2><div class="live" id="readyH"></div><div class="lines" id="lines"></div>
+   <div class="tot"><span id="totL"></span><b id="tot">0</b></div>
+   <button class="btn print" id="printBtn"></button><button class="link" id="lastBtn"></button>
+   <p class="hint" id="hint"></p><p class="off" id="offl"></p></aside>
+ </main>
+</div>
+<div class="ov show" id="welcome">
+ <img class="wlogo" src="assets/logo.jpg" alt="" onerror="this.remove()"><div class="tag" id="wTag"></div>
+ <h1 id="wH"></h1><p id="wP"></p><div class="how" id="wHow"></div><button class="btn pulse" id="startBtn"></button>
+</div>
+<div class="ov" id="confirm"><h2 id="cT"></h2><p id="cM"></p><button class="btn" id="yesBtn"></button><button class="btn alt" id="noBtn"></button></div>
+<div class="ov" id="done"><h2 id="dT"></h2><div class="big" id="dNo"></div><p id="dM"></p><button class="btn" id="newBtn"></button></div>
+<div class="ov" id="idle" style="z-index:10"><h2 id="iT"></h2><div class="big" id="iC"></div><button class="btn" id="iBtn"></button></div>
+<div class="toast" id="toast"></div><div id="ticket"></div>
+<script>
+const BRANCH={ar:'فرع وزير طلعت حرب',en:'Wazir Talaat Harb Branch'};
+const CURRENCY={ar:'ج.م',en:'EGP'};
+const DEFAULT_MAX_EXTRA=3;               // max quantity per extra (change per extra below if needed)
+const IDLE_MS=60000, IDLE_WARN_S=10, DONE_RESET_MS=25000;
+const COMPS={ // component id -> names + visual color
+ rice:{ar:'أرز بلبن',en:'Rice pudding',c:'#f7f1e6'},kunafa:{ar:'كنافة',en:'Kunafa',c:'#d98f3d'},
+ cream:{ar:'كريمة',en:'Cream',c:'#fffaf0'},phyllo:{ar:'جلاش',en:'Phyllo',c:'#e9c78a'},
+ nutella:{ar:'صوص نوتيلا',en:'Nutella sauce',c:'#4a2a1a'},lotus:{ar:'صوص لوتس',en:'Lotus sauce',c:'#b8651b'},
+ pist:{ar:'صوص بستاشيو',en:'Pistachio sauce',c:'#8fb04f'},kinder:{ar:'صوص كيندر',en:'Kinder sauce',c:'#c9a27c'},
+ caramel:{ar:'صوص كراميل',en:'Caramel sauce',c:'#e39a27'},banana:{ar:'موز',en:'Banana',c:'#f4dc6a'},
+ mango:{ar:'مانجو',en:'Mango',c:'#f5a623'},oreo:{ar:'أوريو بودر',en:'Oreo powder',c:'#3b3b3b'},
+ lpow:{ar:'لوتس بودر',en:'Lotus powder',c:'#c98a4b'},chips:{ar:'تشوكليت شيبس',en:'Chocolate chips',c:'#2e1a12'},
+ nuts:{ar:'مكسرات',en:'Nuts',c:'#a0703a'},pistach:{ar:'فستق',en:'Pistachio',c:'#6e9a3c'},
+ mixfruit:{ar:'ميكس فروت',en:'Mixed fruit',c:'#f7b94a'},qeshta:{ar:'قشطة',en:'Qeshta',c:'#fff3d6'},
+ basbousa:{ar:'بسبوسة',en:'Basbousa',c:'#e8a93a'},ice:{ar:'آيس كريم',en:'Ice cream',c:'#fbd3e0'},
+ oreoB:{ar:'بسكويت أوريو',en:'Oreo biscuit',c:'#2b2b2b'},lotusB:{ar:'بسكويت لوتس',en:'Lotus biscuit',c:'#b5622a'}
+};
+const BASE=[['rice',200],['kunafa',30],['cream',40],['phyllo',20]]; // common base of every koshary (manual)
+// pos = exact POS item name (so the cashier finds it fast); price from the menu sheet; comps from the manual
+const IMG={KR01:'assets/nutella.jpg',KR02:'assets/lotus.jpg',KR03:'assets/mango.jpg',KR04:'assets/kinder-pistachio.jpg',KR05:'assets/banana-caramel.jpg',KR06:'assets/mix-fruit.jpg',KR07:'assets/super-hero.jpg',KR08:'assets/sultan.jpg',KR09:'assets/iskandarani.jpg',KR10:'assets/super-lux.jpg',KR11:'assets/wazir.jpg'};
+const PRODUCTS=[
+ {id:'KR01',pos:'كشرى نوتيلا',ar:'كشري نوتيلا',en:'Nutella',price:95,top:[['nutella',50],['oreo',10]]},
+ {id:'KR02',pos:'كشرى لوتس',ar:'كشري لوتس',en:'Lotus',price:100,top:[['lotus',50],['lpow',10]]},
+ {id:'KR03',pos:'كشرى مانجا',ar:'كشري مانجو',en:'Mango',price:95,top:[['mango',100]]},
+ {id:'KR04',pos:'كشري كيندر',ar:'كشري كيندر',en:'Kinder',price:100,top:[['kinder',50]]},
+ {id:'KR05',pos:'كشرى موز كراميل',ar:'كشري موز كراميل',en:'Banana Caramel',price:90,top:[['banana',100],['caramel',10]]},
+ {id:'KR06',pos:'كشرى ميكس فروت',ar:'كشري ميكس فروت',en:'Mix Fruit',price:100,top:[['mango',50],['banana',50],['caramel',5]]},
+ {id:'KR07',pos:'كشري سوبر هيرو',ar:'كشري سوبر هيرو',en:'Super Hero',price:115,top:[['lotus',25],['lpow',20],['pist',25]]},
+ {id:'KR08',pos:'كشرى السلطان',ar:'كشري السلطان',en:'El Sultan',price:110,top:[['banana',100],['lotus',25],['pist',25]]},
+ {id:'KR09',pos:'كشرى اسكندرانى',ar:'كشري اسكندراني',en:'Iskandarani',price:90,top:[['banana',100],['nutella',50]]},
+ {id:'KR10',pos:'كشري سوبر لوكس',ar:'كشري سوبر لوكس',en:'Super Lux',price:120,top:[['lotus',20],['pist',20],['nutella',20],['lpow',20],['chips',20]]},
+ {id:'KR11',pos:'كشرى ميكس الوزير',ar:'كشري ميكس الوزير',en:'Mix El Wazir',price:100,top:[['pist',15],['lotus',15],['nutella',20]]}
+ // KR12 Pistachio: in the manual but has NO price in the menu sheet -> add it here when the price is known
+];
+const EXTRAS=[ // pos = POS name, comp = visual/recipe component, g = grams per unit (manual)
+ {id:'e1',pos:'إضافة صوص لوتس بلجيكي',comp:'lotus',price:30,g:50},{id:'e2',pos:'إضافة نوتيلا',comp:'nutella',price:25,g:50},
+ {id:'e3',pos:'إضافة صوص بستاشيو',comp:'pist',price:30,g:50},{id:'e4',pos:'إضافة صوص كندار',comp:'kinder',price:20,g:50},
+ {id:'e5',pos:'إضافة صوص كراميل',comp:'caramel',price:20,g:50},{id:'e6',pos:'إضافة بسكويت أوريو',comp:'oreoB',price:25,g:15},
+ {id:'e7',pos:'إضافة بسكويت لوتس',comp:'lotusB',price:25,g:15},{id:'e8',pos:'إضافة مكسرات',comp:'nuts',price:35,g:20},
+ {id:'e9',pos:'إضافة فسدق',comp:'pistach',price:30,g:5},{id:'e10',pos:'إضافة مانجا',comp:'mango',price:25,g:50},
+ {id:'e11',pos:'إضافة موز',comp:'banana',price:25,g:null},{id:'e12',pos:'إضافة ميكس موز',comp:'mixfruit',price:20,g:50},
+ {id:'e13',pos:'إضافة قشطه',comp:'qeshta',price:25,g:30},{id:'e14',pos:'إضافة كنافه',comp:'kunafa',price:15,g:50},
+ {id:'e15',pos:'إضافة بسبوسة',comp:'basbousa',price:20,g:20},{id:'e16',pos:'إضافة ايس كريم',comp:'ice',price:30,g:90}
+];
+const LOCKED=['rice']; // base components the customer cannot remove (the rice box IS the product)
+
+const T={
+ ar:{brand:'وزير الحلو',lang:'English',tag:'حضّر منتجك بمزاجك',h:'اختار. حضّر. <em>استمتع.</em>',sub:'اختار كشريك المفضل، شيل اللي مش عايزه، وزوّد اللي بتحبه.',
+  how:['اختار','حضّر','استلم'],start:'ابدأ دلوقتي',menuT:'اختار نجمك',kinds:'أصناف',buildT:'حضّر طبقك',reset:'إعادة',back:'القائمة',
+  base:'المكونات الأساسية',baseH:'شيل أي مكوّن براحتك — السعر لا يتغير.',extras:'زوّد لمستك',extrasH:'كل إضافة بسعرها. الحد الأقصى ظاهر على كل اختيار.',
+  add:'أضف للطلب',sum:'ملخص الطلب',ready:'جاهز للطباعة؟',total:'الإجمالي',print:'اطبع التذكرة',last:'إعادة طباعة آخر طلب',
+  hint:'سلّم التذكرة للكاشير لإدخال الطلب على الـ POS.',offl:'يعمل بدون إنترنت بعد التحميل',empty:'لسه مفيش حاجة في الطلب',without:'بدون',remove:'حذف',
+  cT:'التذكرة اتطبعت؟',cM:'اتأكد إن الورقة خرجت من الطابعة. لو مخرجتش، اتأكد إن الطابعة فيها ورق وجرّب تاني.',yes:'أيوه، خرجت',no:'لأ، أعد الطباعة',
+  dT:'تمام! طلبك جاهز',dM:'امسك التذكرة وروح للكاشير',nw:'طلب جديد',it:'لسه معانا؟',ib:'أيوه، كمّل',max:'أقصى كمية',added:'تمت الإضافة ✓'},
+ en:{brand:'Wazir El Helw',lang:'عربي',tag:'Make it your way',h:'Choose. Create. <em>Enjoy.</em>',sub:'Pick your favorite koshary, remove what you don’t want, add what you love.',
+  how:['Choose','Create','Collect'],start:'Start now',menuT:'Pick your star',kinds:'flavors',buildT:'Create your bowl',reset:'Reset',back:'Menu',
+  base:'Base ingredients',baseH:'Remove anything you like — the price stays the same.',extras:'Add your touch',extrasH:'Each extra has its own price. The max quantity is shown on each one.',
+  add:'Add to order',sum:'Order summary',ready:'Ready to print?',total:'Total',print:'Print ticket',last:'Reprint last order',
+  hint:'Hand the ticket to the cashier to enter the order in the POS.',offl:'Works offline after loading',empty:'Your order is empty',without:'Without',remove:'Remove',
+  cT:'Did the ticket print?',cM:'Check that the slip came out of the printer. If not, make sure it has paper and try again.',yes:'Yes, it printed',no:'No, print again',
+  dT:'All set! Your order is ready',dM:'Take the ticket to the cashier',nw:'New order',it:'Still there?',ib:'Yes, continue',max:'Max qty',added:'Added ✓'}
+};
+
+/* ================= STATE + PRICING ================= */
+let lang='ar',view='menu',pid=null,removed=new Set(),qty={},cart=[],seen=new Set(),last=null,curNo=null,idleT,warnT,doneT,toastT;
+try{last=JSON.parse(localStorage.getItem('wh_last')||'null')}catch(e){}
+const $=id=>document.getElementById(id),P=id=>PRODUCTS.find(p=>p.id===id),X=id=>EXTRAS.find(e=>e.id===id);
+const t=k=>T[lang][k],fmt=n=>n.toLocaleString(lang==='ar'?'ar-EG':'en-US'),money=n=>fmt(n)+' '+CURRENCY[lang],nm=o=>lang==='ar'?o.ar:o.en;
+const maxOf=e=>e.max||DEFAULT_MAX_EXTRA,baseComps=p=>[...BASE,...p.top];
+// price = product base price + extras only. Removing base components NEVER changes the price.
+const lineTotal=l=>P(l.pid).price+Object.entries(l.extras).reduce((s,[id,q])=>s+X(id).price*q,0);
+const curLine=()=>({pid,removed:[...removed],extras:{...qty}}),cartTotal=(c=cart)=>c.reduce((s,l)=>s+lineTotal(l),0);
+
+/* ================= RENDER ================= */
+function tween(el,to){const from=+el.dataset.v||0;el.dataset.v=to;const s=performance.now();(function f(n){const k=Math.min(1,(n-s)/350);el.textContent=money(Math.round(from+(to-from)*k));if(k<1)requestAnimationFrame(f)})(s)}
+function imgFb(img,id){img.remove()}
+function toast(m){const e=$('toast');e.textContent=m;e.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('show'),1400)}
+function chrome(stepNo){
+ const d=document.documentElement;d.lang=lang;d.dir=lang==='ar'?'rtl':'ltr';
+ $('brand').textContent=t('brand');$('branch').textContent=nm(BRANCH);$('langBtn').textContent=t('lang');
+ $('steps').innerHTML=t('how').map((s,i)=>`<div class="st ${i+1===stepNo?'on':i+1<stepNo?'done':''}"><i>${fmt(i+1)}</i>${s}</div>`).join('');
+ $('sumH').textContent=t('sum');$('readyH').textContent=t('ready');$('totL').textContent=t('total');$('printBtn').textContent='⎙ '+t('print');
+ $('lastBtn').textContent='↗ '+t('last');$('hint').textContent=t('hint');$('offl').textContent='● '+t('offl');
+ $('wTag').textContent=t('tag');$('wH').innerHTML=t('h');$('wP').textContent=t('sub');$('startBtn').textContent=t('start');
+ $('wHow').innerHTML=t('how').map((s,i)=>`<div><b>${fmt(i+1)}</b>${s}</div>`).join('');
+ $('cT').textContent=t('cT');$('cM').textContent=t('cM');$('yesBtn').textContent=t('yes');$('noBtn').textContent=t('no');
+ $('dT').textContent=t('dT');$('dM').textContent=t('dM');$('newBtn').textContent=t('nw');$('iT').textContent=t('it');$('iBtn').textContent=t('ib');
+}
+function stage(){
+ if(view==='menu'){
+  $('stage').innerHTML=`<div class="mhead"><h2>${t('menuT')}</h2><span class="pill">${fmt(PRODUCTS.length)} ${t('kinds')}</span></div><div class="grid">${PRODUCTS.map((p,i)=>
+   `<button class="card" style="animation-delay:${i*40}ms" data-p="${p.id}"><div class="ph"><span>🍮</span><img src="${IMG[p.id]}" alt="" onerror="imgFb(this,'${p.id}')"></div><b>${nm(p)}</b><small>${p.top.slice(0,3).map(([c])=>nm(COMPS[c])).join(' · ')}</small><span class="price">${money(p.price)}</span></button>`).join('')}</div>`;
+ }else{
+  const p=P(pid),arrow=lang==='ar'?'→':'←';
+  $('stage').innerHTML=`<div class="bhead"><button class="ghost" id="backBtn">${arrow} ${t('back')}</button><h2>${t('buildT')} · ${nm(p)}</h2><button class="ghost" id="resetBtn">↺ ${t('reset')}</button></div>
+   <div class="build"><div class="cupwrap"><div class="selected-product"><img src="${IMG[p.id]}" alt=""/><div><small>${lang==='ar'?'الاختيار الحالي':'Current choice'}</small><strong>${nm(p)}</strong></div></div><div class="jar"><div class="cup" id="cup"></div></div><div class="cuptotal" id="cupTotal"></div><button class="btn add" id="addBtn">+ ${t('add')}</button></div><div class="opts" id="opts"></div></div>`;
+  opts();cup();
+ }
+}
+function opts(){
+ const p=P(pid),el=$('opts'),sc=el.scrollTop;
+ el.innerHTML=`<h3>${t('base')}</h3><p>${t('baseH')}</p><div class="chips">${baseComps(p).map(([c,g])=>{const lk=LOCKED.includes(c);
+  return `<button class="chip ${removed.has(c)?'off':''} ${lk?'lock':''}" data-c="${c}" ${lk?'disabled':''}>${nm(COMPS[c])} <small>${fmt(g)}g</small></button>`}).join('')}</div>
+  <h3>${t('extras')}</h3><p>${t('extrasH')}</p><div class="exg">${EXTRAS.map(e=>{const q=qty[e.id]||0,c=COMPS[e.comp];
+  return `<div class="ex ${q?'has':''}"><span class="dot" style="--c:${c.c}"></span><div class="n">${nm(c)}<small>${e.g?fmt(e.g)+'g · ':''}${t('max')} ${fmt(maxOf(e))}</small></div><span class="p">${money(e.price)}</span>
+  <button class="step" data-m="${e.id}" ${q?'':'disabled'}>−</button><span class="q">${fmt(q)}</span><button class="step" data-a="${e.id}" ${q>=maxOf(e)?'disabled':''}>+</button></div>`}).join('')}</div>`;
+ el.scrollTop=sc;
+}
+function cup(){
+ const bands=[];baseComps(P(pid)).forEach(([c,g])=>{if(!removed.has(c))bands.push([pid+c,c,g])});
+ EXTRAS.forEach(e=>{for(let i=0;i<(qty[e.id]||0);i++)bands.push([e.id+i,e.comp,e.g||40])});
+ $('cup').innerHTML=bands.map(([k,c,g])=>`<div class="band ${seen.has(k)?'':'new'}" style="--c:${COMPS[c].c};flex-grow:${g}"><span>${nm(COMPS[c])}</span></div>`).join('');
+ bands.forEach(b=>seen.add(b[0]));tween($('cupTotal'),lineTotal(curLine()));
+}
+function renderCart(){
+ $('lines').innerHTML=cart.length?cart.map((l,i)=>{const p=P(l.pid),rm=l.removed.length?`<small>${t('without')}: ${l.removed.map(c=>nm(COMPS[c])).join('، ')}</small>`:'',
+  ex=Object.entries(l.extras).map(([id,q])=>`<small>+ ${nm(COMPS[X(id).comp])} × ${fmt(q)}</small>`).join('');
+  return `<div class="ln"><div class="t"><span>${nm(p)}</span><span>${money(lineTotal(l))}</span></div>${rm}${ex}<button data-d="${i}">${t('remove')}</button></div>`}).join('')
+  :`<div class="empty">${t('empty')}</div>`;
+ tween($('tot'),cartTotal());$('printBtn').disabled=!cart.length;$('lastBtn').disabled=!last;
+}
+const renderAll=()=>{chrome(view==='menu'?1:2);stage();renderCart()};
+
+/* ================= EVENTS ================= */
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+ if(d.p){pid=d.p;view='build';removed=new Set();qty={};seen=new Set();chrome(2);stage()}
+ else if(d.c){removed.has(d.c)?removed.delete(d.c):removed.add(d.c);opts();cup()}
+ else if(d.a){const x=X(d.a);qty[x.id]=Math.min(maxOf(x),(qty[x.id]||0)+1);opts();cup()}
+ else if(d.m){qty[d.m]=Math.max(0,(qty[d.m]||0)-1);if(!qty[d.m])delete qty[d.m];opts();cup()}
+ else if(d.d){cart.splice(+d.d,1);renderCart()}
+ else if(b.id==='backBtn'){view='menu';chrome(1);stage()}
+ else if(b.id==='resetBtn'){removed=new Set();qty={};seen=new Set();opts();cup()}
+ else if(b.id==='addBtn'){cart.push(curLine());view='menu';chrome(1);stage();renderCart();toast(t('added'))}
+});
+$('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';renderAll()};
+$('startBtn').onclick=()=>{$('welcome').classList.remove('show');poke()};
+
+/* ================= ORDER NUMBER + PRINTING ================= */
+function nextNo(){ // sequential, resets daily, stored locally (single branch / single device for the pilot)
+ const day=new Date().toISOString().slice(0,10);let s={day,n:0};
+ try{const o=JSON.parse(localStorage.getItem('wh_seq')||'null');if(o&&o.day===day)s=o}catch(e){}
+ s.n++;try{localStorage.setItem('wh_seq',JSON.stringify(s))}catch(e){}return String(s.n).padStart(3,'0');
+}
+function buildTicket(c,no){ // always Arabic + exact POS names, so it matches what the cashier sees in the POS
+ const d=new Date(),ar=n=>n.toLocaleString('ar-EG');
+ const rows=c.map(l=>{const p=P(l.pid),rm=l.removed.length?`<div class="sub">بدون: ${l.removed.map(x=>COMPS[x].ar).join('، ')}</div>`:'',
+  ex=Object.entries(l.extras).map(([id,q])=>{const x=X(id);return `<div class="sub r"><span>${x.pos} × ${ar(q)}</span><span>${ar(x.price*q)}</span></div>`}).join('');
+  return `<div class="r"><b>1 × ${p.pos}</b><b>${ar(p.price)}</b></div>${rm}${ex}<hr>`}).join('');
+ $('ticket').innerHTML=`<div class="c"><b style="font-size:18px">وزير الحلو</b><br>${BRANCH.ar}<br>${d.toLocaleDateString('ar-EG')} ${d.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</div>
+  <div class="no">${no}</div><hr>${rows}<div class="r" style="font-size:18px"><b>الإجمالي</b><b>${ar(cartTotal(c))} جنيه</b></div><hr>
+  <div class="c">سلّم هذه الورقة للكاشير<br>Hand this slip to the cashier</div>`;
+}
+const printOrder=(c,no)=>{buildTicket(c,no);window.print()};
+$('printBtn').onclick=()=>{if(!cart.length)return;curNo=nextNo();last={no:curNo,cart:JSON.parse(JSON.stringify(cart))};
+ try{localStorage.setItem('wh_last',JSON.stringify(last))}catch(e){}
+ printOrder(cart,curNo);chrome(3);$('confirm').classList.add('show');clearTimeout(doneT);doneT=setTimeout(resetAll,90000)};
+// the browser cannot know if the printer really printed, so the customer confirms; "No" reprints with the SAME number
+$('noBtn').onclick=()=>printOrder(cart,curNo);
+$('yesBtn').onclick=()=>{$('confirm').classList.remove('show');$('dNo').textContent=fmt(+curNo);$('done').classList.add('show');clearTimeout(doneT);doneT=setTimeout(resetAll,25000)};
+$('lastBtn').onclick=()=>{if(last)printOrder(last.cart,last.no)};
+$('newBtn').onclick=()=>resetAll();
+
+/* ================= RESET + IDLE ================= */
+function resetAll(){clearTimeout(doneT);clearTimeout(idleT);clearInterval(warnT);cart=[];removed=new Set();qty={};seen=new Set();pid=null;view='menu';lang='ar';curNo=null;
+ ['confirm','done','idle'].forEach(i=>$(i).classList.remove('show'));$('welcome').classList.add('show');renderAll()}
+function poke(){clearTimeout(idleT);if($('welcome').classList.contains('show')||$('confirm').classList.contains('show')||$('done').classList.contains('show'))return;
+ idleT=setTimeout(()=>{let s=IDLE_WARN_S;$('iC').textContent=fmt(s);$('idle').classList.add('show');
+  warnT=setInterval(()=>{s--;$('iC').textContent=fmt(s);if(s<=0){clearInterval(warnT);resetAll()}},1000)},IDLE_MS)}
+$('iBtn').onclick=()=>{clearInterval(warnT);$('idle').classList.remove('show');poke()};
+['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(!$('idle').classList.contains('show'))poke()},true));
+/* kiosk hardening (page level; Chrome --kiosk flags cover the rest) */
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{if(e.ctrlKey||['F5','F11','F12'].includes(e.key))e.preventDefault()});
+renderAll();
+</script>
+</body>
+</html>
